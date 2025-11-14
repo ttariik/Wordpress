@@ -54,8 +54,13 @@ cp .env.example .env
 docker-compose up -d
 ```
 
-5. Access WordPress:
-   - Open browser and navigate to `http://YOUR_IP_ADDRESS:8080`
+5. Configure firewall (on Cloud VM):
+```bash
+./setup-cloud-vm.sh
+```
+
+6. Access WordPress:
+   - Open browser and navigate to `http://YOUR_CLOUD_VM_IP:8080`
    - Follow WordPress installation wizard
    - Configure admin credentials during setup
 
