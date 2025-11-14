@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # WordPress Installation Script
-# Run this script directly on the Cloud VM (91.99.193.112)
+# Run this script directly on the Cloud VM
 # Execute: bash install-on-vm.sh
 
 set -euo pipefail
@@ -106,7 +106,7 @@ echo "Container status:"
 docker-compose ps
 
 # Get public IP
-PUBLIC_IP=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}' || echo "91.99.193.112")
+PUBLIC_IP=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}' || echo "YOUR_VM_IP")
 
 echo ""
 echo "=========================================="
@@ -114,10 +114,9 @@ echo "WordPress installation complete!"
 echo "=========================================="
 echo "WordPress is accessible at:"
 echo "http://${PUBLIC_IP}:8080"
-echo "http://91.99.193.112:8080"
 echo ""
 echo "Next steps:"
-echo "1. Open http://91.99.193.112:8080 in your browser"
+echo "1. Open http://${PUBLIC_IP}:8080 in your browser"
 echo "2. Follow the WordPress installation wizard"
 echo "3. Configure your admin credentials"
 echo "=========================================="

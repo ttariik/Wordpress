@@ -8,10 +8,9 @@ set -euo pipefail
 WORK_DIR="$HOME/wordpress"
 REPO_URL="https://github.com/ttariik/Wordpress.git"
 BRANCH="feature/wordpress"
-VM_IP="91.99.193.112"
-WORDPRESS_PORT="8080"
+WORDPRESS_PORT="${WORDPRESS_PORT:-8080}"
 
-echo "WordPress Setup for ${VM_IP}:${WORDPRESS_PORT}"
+echo "WordPress Setup on port ${WORDPRESS_PORT}"
 echo "=========================================="
 
 # Install Docker if not present
@@ -116,11 +115,12 @@ echo ""
 echo "=========================================="
 echo "WordPress setup complete!"
 echo "=========================================="
+PUBLIC_IP=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}' || echo "YOUR_VM_IP")
 echo "WordPress is accessible at:"
-echo "http://${VM_IP}:${WORDPRESS_PORT}"
+echo "http://${PUBLIC_IP}:${WORDPRESS_PORT}"
 echo ""
 echo "Next steps:"
-echo "1. Open http://${VM_IP}:${WORDPRESS_PORT} in your browser"
+echo "1. Open http://${PUBLIC_IP}:${WORDPRESS_PORT} in your browser"
 echo "2. Follow the WordPress installation wizard"
 echo "3. Configure your admin credentials"
 echo "=========================================="

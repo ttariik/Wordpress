@@ -5,10 +5,16 @@
 
 set -euo pipefail
 
-VM_IP="91.99.193.112"
-VM_USER="tsabanovic"
+VM_IP="${VM_IP:-}"
+VM_USER="${VM_USER:-}"
 REPO_URL="https://github.com/ttariik/Wordpress.git"
 BRANCH="feature/wordpress"
+
+if [ -z "${VM_IP}" ] || [ -z "${VM_USER}" ]; then
+    echo "ERROR: VM_IP and VM_USER environment variables must be set"
+    echo "Usage: VM_IP=your.vm.ip VM_USER=username ./deploy-to-vm.sh"
+    exit 1
+fi
 
 echo "Deploying WordPress to Cloud VM: ${VM_IP}"
 
@@ -110,8 +116,6 @@ echo "=========================================="
 echo "WordPress deployment complete!"
 echo "WordPress is accessible at:"
 echo "http://${PUBLIC_IP}:8080"
-echo "or"
-echo "http://91.99.193.112:8080"
 echo "=========================================="
 ENDSSH
 
