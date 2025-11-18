@@ -204,5 +204,7 @@ This project is provided under the [MIT License](LICENSE.md).
 
 ## Contact
 
-[Specify contact information here]
+For security disclosures or operational inquiries contact:
+- Email: contact@example.com
+- PGP: https://example.com/pgp-key.asc
 
