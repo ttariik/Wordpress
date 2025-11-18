@@ -156,16 +156,16 @@ Both services operate in the `wordpress_network` bridge network, enabling secure
 
 The repository includes several deployment scripts for automated setup:
 
-- **`setup-on-vm.sh`**: Complete setup script to be executed directly on the Cloud VM. Installs Docker, Docker Compose, clones the repository, creates environment configuration, and starts the containers.
+- **[`setup-on-vm.sh`](setup-on-vm.sh)**: Complete setup script to be executed directly on the Cloud VM. Installs Docker, Docker Compose, clones the repository, creates environment configuration, and starts the containers.
 
-- **`install-on-vm.sh`**: Alternative installation script for direct execution on the VM. Similar functionality to `setup-on-vm.sh` with additional error handling.
+- **[`install-on-vm.sh`](install-on-vm.sh)**: Alternative installation script for direct execution on the VM. Similar functionality to `setup-on-vm.sh` with additional error handling.
 
-- **`deploy-to-vm.sh`**: Remote deployment script that connects to the VM via SSH and executes the setup. Requires `VM_IP` and `VM_USER` environment variables:
+- **[`deploy-to-vm.sh`](deploy-to-vm.sh)**: Remote deployment script that connects to the VM via SSH and executes the setup. Requires `VM_IP` and `VM_USER` environment variables:
   ```bash
   VM_IP=your.vm.ip VM_USER=username ./deploy-to-vm.sh
   ```
 
-- **`setup-cloud-vm.sh`**: Firewall configuration script for the Cloud VM. Configures firewall rules to allow access on port 8080 and verifies container status.
+- **[`setup-cloud-vm.sh`](setup-cloud-vm.sh)**: Firewall configuration script for the Cloud VM. Configures firewall rules to allow access on port 8080 and verifies container status.
 
 **Note**: All scripts use environment variables for sensitive information. Never hardcode IP addresses, passwords, or credentials in scripts.
 
