@@ -3,7 +3,8 @@
 ## Table of Contents
 
 - [Description](#description)
-- [Quickstart](#quickstart)
+- [Installation](#installation)
+- [Environment Setup](#environment-setup)
 - [Usage](#usage)
 - [Security Guidelines](#security-guidelines)
 - [License](#license)
@@ -24,7 +25,7 @@ This repository contains a Docker Compose configuration for running a WordPress 
 
 This repository serves as a production-ready WordPress deployment template that follows DevSecOps best practices. It enables rapid deployment of WordPress instances with proper data persistence, security configurations, and container orchestration.
 
-## Quickstart
+## Installation
 
 ### Prerequisites
 
@@ -40,13 +41,13 @@ git clone <repository-url>
 cd Wordpress
 ```
 
-2. Create environment file:
+2. Copy the environment template:
 ```bash
 cp .env.example .env
 ```
 
-3. Edit `.env` file and configure required variables:
-   - Set `MYSQL_PASSWORD` and `MYSQL_ROOT_PASSWORD` with secure passwords
+3. Edit `.env` and configure required variables:
+   - Set `MYSQL_PASSWORD` and `MYSQL_ROOT_PASSWORD` with unique passwords
    - Adjust `WORDPRESS_PORT` if port 8080 is already in use
 
 4. Start the services:
@@ -64,30 +65,30 @@ docker-compose up -d
    - Follow WordPress installation wizard
    - Configure admin credentials during setup
 
-## Usage
+## Environment Setup
 
-### Configuration
+### Environment Variables
 
-All configuration is managed through environment variables defined in the `.env` file. The following variables can be modified:
+All configuration is managed through environment variables stored in `.env`. Refer to `.env.example` for placeholders and replicate the structure precisely.
 
 #### Database Configuration
 
 - `MYSQL_DATABASE`: Database name for WordPress (default: `wordpress`)
 - `MYSQL_USER`: Database user for WordPress (default: `wordpress_user`)
-- `MYSQL_PASSWORD`: Password for the WordPress database user (required, no default)
-- `MYSQL_ROOT_PASSWORD`: Root password for MySQL (required, no default)
+- `MYSQL_PASSWORD`: Password for the WordPress database user (required)
+- `MYSQL_ROOT_PASSWORD`: Root password for MySQL (required)
 
 #### WordPress Configuration
 
 - `WORDPRESS_PORT`: Host port mapping for WordPress (default: `8080`)
-- `WORDPRESS_DEBUG`: Enable WordPress debug mode (default: `0`, set to `1` to enable)
+- `WORDPRESS_DEBUG`: Enable WordPress debug mode (default: `0`)
 - `WORDPRESS_TABLE_PREFIX`: Database table prefix (default: `wp_`)
 
 ### Modifying Configuration
 
 To change the WordPress port from 8080 to another port (e.g., 9000):
 
-1. Edit `.env` file:
+1. Edit `.env`:
 ```bash
 WORDPRESS_PORT=9000
 ```
@@ -100,7 +101,7 @@ docker-compose up -d
 
 To enable WordPress debug mode:
 
-1. Edit `.env` file:
+1. Edit `.env`:
 ```bash
 WORDPRESS_DEBUG=1
 ```
@@ -109,6 +110,8 @@ WORDPRESS_DEBUG=1
 ```bash
 docker-compose restart wordpress
 ```
+
+## Usage
 
 ### Service Management
 
@@ -197,7 +200,7 @@ The repository includes several deployment scripts for automated setup:
 
 ## License
 
-[Specify license here]
+This project is provided under the [MIT License](LICENSE.md).
 
 ## Contact
 
