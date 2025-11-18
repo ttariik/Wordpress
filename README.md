@@ -1,27 +1,15 @@
 # WordPress Docker Setup
 
-## Table of Contents
-
-- [Description](#description)
-- [Installation](#installation)
-- [Environment Setup](#environment-setup)
-- [Usage](#usage)
-- [Security Guidelines](#security-guidelines)
-- [License](#license)
-- [Contact](#contact)
-
-## Description
-
 This repository contains a Docker Compose configuration for running a WordPress installation with MySQL database. The setup provides a containerized environment that ensures data persistence, automatic container restart on failure, and isolated networking between services.
 
-### Key Components
+## Key Components
 
 - **WordPress Service**: Latest WordPress image running on port 8080 (configurable)
 - **MySQL Database Service**: MySQL 8.0 database with persistent volume storage
 - **Docker Compose Configuration**: Orchestrates both services with health checks and dependency management
 - **Environment Configuration**: Secure configuration via environment variables
 
-### Purpose
+## Purpose
 
 This repository serves as a production-ready WordPress deployment template that follows DevSecOps best practices. It enables rapid deployment of WordPress instances with proper data persistence, security configurations, and container orchestration.
 
