@@ -55,12 +55,7 @@ cp .env.example .env
 docker-compose up -d
 ```
 
-5. Configure firewall (on Cloud VM):
-```bash
-./setup-cloud-vm.sh
-```
-
-6. Access WordPress:
+5. Access WordPress:
    - Open browser and navigate to `http://YOUR_CLOUD_VM_IP:8080`
    - Follow WordPress installation wizard
    - Configure admin credentials during setup
@@ -174,6 +169,14 @@ The repository includes several deployment scripts for automated setup:
 
 **Note**: All scripts use environment variables for sensitive information. Never hardcode IP addresses, passwords, or credentials in scripts.
 
+### Firewall Configuration
+
+Execute the hardened firewall routine only on Cloud VMs that require explicit ingress rules:
+```bash
+./setup-cloud-vm.sh
+```
+The script validates required environment variables, limits ingress to the configured `WORDPRESS_PORT`, and performs deterministic health checks to confirm container availability.
+
 ## Security Guidelines
 
 ### Environment Variables
@@ -205,6 +208,6 @@ This project is provided under the [MIT License](LICENSE.md).
 ## Contact
 
 For security disclosures or operational inquiries contact:
-- Email: contact@example.com
-- PGP: https://example.com/pgp-key.asc
+- Email: tarik.sabanovic03@gmail.com
+
 
