@@ -49,18 +49,8 @@ fi
 # Create .env file if it doesn't exist
 if [ ! -f .env ]; then
     echo "Creating .env file..."
-    cat > .env << 'ENVEOF'
-# WordPress Docker Environment Configuration
-MYSQL_DATABASE=wordpress
-MYSQL_USER=wordpress_user
-MYSQL_PASSWORD=YOUR_DATABASE_PASSWORD
-MYSQL_ROOT_PASSWORD=YOUR_ROOT_PASSWORD
-WORDPRESS_PORT=8080
-WORDPRESS_DEBUG=0
-WORDPRESS_TABLE_PREFIX=wp_
-ENVEOF
-    
-    # Generate secure passwords
+
+    # Generate secure passwords before writing the file (security: no placeholders reach disk)
     if command -v openssl &> /dev/null; then
         DB_PASSWORD=$(openssl rand -base64 32 | tr -d "=+/" | cut -c1-25)
         ROOT_PASSWORD=$(openssl rand -base64 32 | tr -d "=+/" | cut -c1-25)
@@ -68,9 +58,18 @@ ENVEOF
         DB_PASSWORD=$(date +%s | sha256sum | base64 | head -c 25)
         ROOT_PASSWORD=$(date +%s | sha256sum | base64 | head -c 25)
     fi
-    
-    sed -i "s/YOUR_DATABASE_PASSWORD/${DB_PASSWORD}/" .env
-    sed -i "s/YOUR_ROOT_PASSWORD/${ROOT_PASSWORD}/" .env
+
+    cat > .env << ENVEOF
+# WordPress Docker Environment Configuration
+MYSQL_DATABASE=wordpress
+MYSQL_USER=wordpress_user
+MYSQL_PASSWORD=${DB_PASSWORD}
+MYSQL_ROOT_PASSWORD=${ROOT_PASSWORD}
+WORDPRESS_PORT=8080
+WORDPRESS_DEBUG=0
+WORDPRESS_TABLE_PREFIX=wp_
+ENVEOF
+
     echo "Generated passwords saved in .env file"
 fi
 
